@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
     servers = {@Server(url = "https://localhost:8080", description = "Local server.")})
 
 public interface JeepSalesController {
+  //API Documentation for the four possible outcomes
   // @formatter:off
   @Operation(
   summary="Returns a list of Jeeps",
@@ -44,6 +45,7 @@ public interface JeepSalesController {
           description="Unplanned error occured", 
           content= @Content(mediaType="application/json"))
   },
+  //Paramter Annotations
   parameters={
       @Parameter(
           name="model", 
@@ -60,8 +62,7 @@ public interface JeepSalesController {
   )
   
   
-
-
+  //
   @GetMapping
   @ResponseStatus(code=HttpStatus.OK)
   List<Jeep> fetchJeeps(
