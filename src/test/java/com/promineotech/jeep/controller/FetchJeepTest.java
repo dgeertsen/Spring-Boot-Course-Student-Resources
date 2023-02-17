@@ -27,7 +27,7 @@ class FetchJeepTest extends FetchJeepTestSuupport {
   void setUp() throws Exception {}
 
   //test
-  @Test
+  @Tes
   void testTThatJEepsAreReturendWhenAValidJeepModelAndTrimAreSupplied() {
     //Given: a valid model, trim and URI 
     JeepModel model = JeepModel.WRANGLER;
