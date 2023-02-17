@@ -6,9 +6,8 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.7.8</version>
-    <relativePath/> <!-- lookup parent from repository -->
+    <relativePath /> <!-- lookup parent from repository -->
   </parent>
-  
   <groupId>com.promineotech</groupId>
   <artifactId>jeep-sales</artifactId>
   <version>1.0.1-SNAPSHOT</version>
@@ -22,7 +21,6 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
-
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
@@ -34,13 +32,18 @@
       <artifactId>lombok</artifactId>
       <optional>true</optional>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui -->
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-ui</artifactId>
+      <version>1.6.14</version>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
-
   <build>
     <plugins>
       <plugin>
@@ -57,5 +60,4 @@
       </plugin>
     </plugins>
   </build>
-
 </project>
