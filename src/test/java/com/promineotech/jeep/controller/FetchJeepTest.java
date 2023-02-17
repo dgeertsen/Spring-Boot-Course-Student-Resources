@@ -26,7 +26,7 @@ class FetchJeepTest extends FetchJeepTestSuupport {
   @BeforeEach
   void setUp() throws Exception {}
 
-  //testt
+  //test
   @Test
   void testTThatJEepsAreReturendWhenAValidJeepModelAndTrimAreSupplied() {
     //Given: a valid model, trim and URI 
