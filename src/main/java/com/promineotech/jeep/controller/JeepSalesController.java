@@ -22,7 +22,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 
 public interface JeepSalesController {
   //API Documentation for the four possible outcomes
-  // @formatter:off
+  //@formatter:off
   @Operation(
   summary="Returns a list of Jeeps",
   description="Returns a list of Jeeps given an optional model and/or trim",
@@ -62,9 +62,9 @@ public interface JeepSalesController {
   )
   
   
-  //
-  @GetMapping
-  @ResponseStatus(code=HttpStatus.OK)
+  
+  @GetMapping //HTTP GET RET Request to this method
+  @ResponseStatus(code=HttpStatus.OK)//sets the HTTP response status code to 200 (OK) 
   List<Jeep> fetchJeeps(
       @RequestParam(required=false)
         String model, 

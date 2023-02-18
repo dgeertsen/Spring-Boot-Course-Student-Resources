@@ -6,9 +6,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+
+//Annotation that generates getters and setters for all fields, 
+//as well as equals, hashCode, and toString.
+@Data 
+//Generates builder methods.
 @Builder
+//Builds default constructor.
 @NoArgsConstructor
+//Builds all args constuctor.
 @AllArgsConstructor
 public class Jeep {
   private Long modelPK;

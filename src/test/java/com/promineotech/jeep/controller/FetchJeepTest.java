@@ -17,17 +17,21 @@ import org.springframework.test.context.jdbc.SqlConfig;
 import com.promineotech.jeep.entity.Jeep;
 import com.promineotech.jeep.entity.JeepModel;
 
+//This is a SpringBoot intergration test.
 @SpringBootTest(webEnvironment= WebEnvironment.RANDOM_PORT) 
 @ActiveProfiles("Test")
+//Load SQL Scripts that will be executed
 @Sql(scripts = {
-    "classpath:flyway/migrations/V1.0__Jeep_Schema.sql",
-"classpath:flyway/migrations/V1.1__Jeep_Data.sql"}, 
+    "classpath:src/migrations/V1.0__Jeep_Schema.sql",
+"classpath:s/migrations/V1.1__Jeep_Data.sql"}, 
 config = @SqlConfig(encoding = "utf-8"))
 
 class FetchJeepTest  {
 
+  //Inject an instance of the TestRestTemplate class into this class.
   @Autowired
   private TestRestTemplate restTemplate;
+  //Inject the local server port number into this class.
   @LocalServerPort
   private int serverPort;
   
