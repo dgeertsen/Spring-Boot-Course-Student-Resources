@@ -38,7 +38,7 @@ class FetchJeepTest  {
   private int serverPort;
   
   @Test
-  void testTThatJEepsAreReturendWhenAValidJeepModelAndTrimAreSupplied() {
+  void testThatJeepsAreReturendWhenAValidJeepModelAndTrimAreSupplied() {
   //Given: a valid model, trim and URI 
   JeepModel model = JeepModel.WRANGLER;
   String trim="Sport";
