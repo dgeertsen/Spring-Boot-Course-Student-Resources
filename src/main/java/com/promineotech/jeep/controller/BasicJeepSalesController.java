@@ -15,7 +15,7 @@ public class BasicJeepSalesController implements JeepSalesController {
   @Override
   //Returns a list of jeeps based on model and trim.
   public List<Jeep> fetchJeeps(String model, String trim) {
-    log.info("model={}, trim={}",model,trim);
+    log.debug("model={}, trim={}",model,trim);
     return null;
   }
 

@@ -2,8 +2,10 @@ package com.promineotech.jeep;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.promineotech.ComponentScanMarker;
 
-@SpringBootApplication //// This annotation indicates that this class is a SpringBoot app
+//This annotation indicates that this class is a SpringBoot app
+@SpringBootApplication(scanBasePackageClasses = { ComponentScanMarker.class }) 
 
 public class JeepSales {
 
