@@ -1,5 +1,7 @@
 package com.promineotech.jeep.controller;
 import static org.assertj.core.api.Assertions.assertThat;
+import java.math.BigDecimal;
+import java.util.LinkedList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ import com.promineotech.jeep.entity.JeepModel;
 
 //This is a SpringBoot intergration test.
 @SpringBootTest(webEnvironment= WebEnvironment.RANDOM_PORT) 
-@ActiveProfiles("Test")
+@ActiveProfiles("test")
 //Load SQL Scripts that will be executed
 @Sql(scripts = {
     "classpath:src/migrations/V1.0__Jeep_Schema.sql",
@@ -36,7 +38,7 @@ class FetchJeepTest  {
   private int serverPort;
   
   @Test
-  void testTThatJEepsAreReturendWhenAValidJeepModelAndTrimAreSupplied() {
+  void testThatJeepsAreReturendWhenAValidJeepModelAndTrimAreSupplied() {
   //Given: a valid model, trim and URI 
   JeepModel model = JeepModel.WRANGLER;
   String trim="Sport";
@@ -49,8 +51,36 @@ class FetchJeepTest  {
   
   //Then: a success (OK - 200) status code is returned
   assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-  }
+  
+  //And: the actual list returned is the same as the expected list;
+  List<Jeep> expected=buildExpected();
+  assertThat(response.getBody()).isEqualTo(expected);
   
   }
+
+  protected List<Jeep> buildExpected() {
+    List<Jeep> list = new LinkedList<>();
+    // @formatter:off
+    list.add(Jeep.builder()
+        .modelId(JeepModel.WRANGLER)
+        .trimLevel("Sport")
+        .numDoors(2)
+        .wheelSize(17)
+        .basePrice(new BigDecimal("28475.00"))
+        .build());
+    
+    list.add(Jeep.builder()
+        .modelId(JeepModel.WRANGLER)
+        .trimLevel("Sport")
+        .numDoors(4)
+        .wheelSize(17)
+        .basePrice(new BigDecimal("31975.00"))
+        .build());
+    // @formatter:on
+    return list;
+    
+  }
+}
+
 
 
