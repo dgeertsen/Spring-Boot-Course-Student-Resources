@@ -18,7 +18,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 
 @RequestMapping("/jeeps")
 @OpenAPIDefinition(info = @Info(title = "Jeep Sales Service"),
-    servers = {@Server(url = "https://localhost:8080", description = "Local server.")})
+    servers = {@Server(url = "http://localhost:8080", description = "Local server.")})
 
 public interface JeepSalesController {
   //API Documentation for the four possible outcomes
@@ -63,7 +63,7 @@ public interface JeepSalesController {
   
   
   
-  @GetMapping //HTTP GET RET Request to this method
+  @GetMapping //HTTP GET Request to this method
   @ResponseStatus(code=HttpStatus.OK)//sets the HTTP response status code to 200 (OK) 
   List<Jeep> fetchJeeps(
       @RequestParam(required=false)
