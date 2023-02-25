@@ -1,3 +1,8 @@
+#Overide connection to Db
+spring:
+  datasource: 
+    url: jdbc:h2:mem:jeep;mode=MYSQL
+#Logging Info
 logging:
   level:
     root: warn
