@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import org.junit.jupiter.api.Disabled;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,11 +16,9 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
-import org.springframework.test.jdbc.JdbcTestUtils;
 import com.promineotech.jeep.entity.Jeep;
 import com.promineotech.jeep.entity.JeepModel;
 
@@ -73,7 +71,36 @@ class FetchJeepTest {
     assertThat(actual).isEqualTo(expected);
 
   }
+  @Test
+  void testThatAnErrorMessageIsReturnedWhenInvalidTrimIsUsed() {
+    // Given: a valid model, trim and URI
+    JeepModel model = JeepModel.WRANGLER;
+    String trim = "Invalid value";
+    String uri =
+        String.format("http://localhost:%d/jeeps?model=%s&trim=%s", serverPort, model, trim);
 
+    // When: a connections is made to the URI
+    ResponseEntity<Map<String, Object>> response =
+        restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {});
+
+    // Then: a not found (404) status is returned
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+
+    // And: an error message is returned
+    Map<String, Object> error = response.getBody();
+    
+    // @formatter:off
+    assertThat(error)
+    .containsKey("message")
+    .containsEntry("status code",HttpStatus.NOT_FOUND.value())
+    .containsEntry("uri", "/jeeps")
+    .containsKey("timestamp")
+    .containsEntry("reason",HttpStatus.NOT_FOUND.getReasonPhrase());
+    // @formatter:on
+
+  }
+
+  
   protected List<Jeep> buildExpected() {
     List<Jeep> list = new LinkedList<>();
     // @formatter:off
