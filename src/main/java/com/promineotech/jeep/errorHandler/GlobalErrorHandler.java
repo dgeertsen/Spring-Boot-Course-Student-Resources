@@ -102,7 +102,7 @@ public class GlobalErrorHandler {
     if(logStatus== LogStatus.MESSSAGE_ONLY)
       log.error("Error: {}",e.toString());
     else
-      log.error("Error: {}",e);
+      log.error("Error:",e);
     
     return error;
   }
