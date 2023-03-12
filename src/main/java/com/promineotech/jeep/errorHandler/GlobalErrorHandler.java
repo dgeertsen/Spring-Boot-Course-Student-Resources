@@ -23,10 +23,12 @@ public class GlobalErrorHandler {
     STACK_TRACE,MESSSAGE_ONLY
   }
   /**
+   * @info Catches handleConstraintViolationException 
+   * and returns the exception, an exception, a messsage and BAD_REQUEST
    * 
    * @param e
    * @param webRequest
-   * @return
+   * @return 
    */
   @ExceptionHandler(MethodArgumentTypeMismatchException.class)
   @ResponseStatus(code = HttpStatus.BAD_REQUEST)
@@ -35,7 +37,9 @@ public class GlobalErrorHandler {
     return createExceptionMessage(e, HttpStatus.BAD_REQUEST, webRequest,LogStatus.MESSSAGE_ONLY);
   }
   
-  /**
+/**
+   * @info Catches handleConstraintViolationException 
+   * and returns the exception, an exception, a messsage and BAD_REQUEST
    * 
    * @param e
    * @param webRequest
@@ -50,6 +54,8 @@ public class GlobalErrorHandler {
   }
 
   /**
+   * @info Catches handleNoSuchElementException 
+   * and returns the exception, an exception, a messsage and NOT_FOUND
    * 
    * @param e
    * @param webRequest
@@ -65,7 +71,9 @@ public class GlobalErrorHandler {
   }
 
   /**
-   * 
+   * @info Catches Exception 
+   * and returns the exception, an exception, a messsage and INTERNAL_SERVER_ERROR
+   *
    * @param e
    * @param webRequest
    * @return
@@ -78,6 +86,7 @@ public class GlobalErrorHandler {
 
 
   /**
+   * @info Creates exception message for above methods
    * 
    * @param e
    * @param status
